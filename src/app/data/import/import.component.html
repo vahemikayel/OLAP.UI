@@ -1,0 +1,11 @@
+<div class="container">
+    <!-- <div class="col-md-8 form-group">        
+        <input type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">        
+    </div>  -->
+    <div class="col-md-8 form-group">        
+        <input type="file" name="file" class="custom-file-input" id="inputGroupFile" (change) = "csvImport($event)" required
+               accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <label class="custom-file-label" for="inputGroupFile">Choose File</label>        
+        <button (click)="readFile()">Read Excel File</button>
+    </div> 
+</div>
