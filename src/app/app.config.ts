@@ -9,6 +9,9 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { jwtInterceptorFn, errorInterceptorFn, loadingInterceptorFn } from './core/interceptors/interceptorhelpers';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule, provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser'
+import { CommonModule } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +22,12 @@ export const appConfig: ApplicationConfig = {
         { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         importProvidersFrom(ToastrModule.forRoot()),
+        importProvidersFrom(BrowserModule),
+        importProvidersFrom(BrowserAnimationsModule),
+        BrowserAnimationsModule,
+        BrowserModule,
+        provideAnimations(),
+        provideNoopAnimations(),
+        CommonModule
     ]
 };

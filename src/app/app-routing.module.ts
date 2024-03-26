@@ -5,19 +5,27 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleAnalizeComponent } from './data/simpleanalize/simpleanalize.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule), data: { breadcrumb: {skip: true} } },
   { path: 'data', loadChildren: () => import('./data/data.module').then(m => m.DataModule), data: { breadcrumb: {skip: true} } },
+  { 
+    path: 'dataA', 
+    children: [
+      { 
+          path: 'simpleanalize',
+          component: SimpleAnalizeComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    HttpClientModule,
-    BrowserAnimationsModule
+    HttpClientModule
   ],
   exports: [
     RouterModule,
